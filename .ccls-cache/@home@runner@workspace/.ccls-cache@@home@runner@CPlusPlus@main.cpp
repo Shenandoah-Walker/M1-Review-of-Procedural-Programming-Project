@@ -26,11 +26,25 @@ Postconditions: The winner of the game is returned as a string.
 
 string determineWinner(int userChoice, int computerChoice);
 
+/*
+  Function: scoreKeeper
+  Purpose: Keeps track of the user's score and the computer's score.
+  Parameters:
+  - userChoice: The user's choice as an integer.
+  - computerChoice: The computer's choice as an integer.
+  Returns: The user's score as an integer and the computer's score as an integer.
+  Preconditions: The user's choice and the computer's choice are valid integers.
+  Postconditions: The user's score and the computer's score are returned as integers.
+*/
+
+int scoreKeeper(int userChoice, int computerChoice);
+
 int main() {
   //Create and initialize variables
   int userChoice = 0;
   int computerChoice = 0;
-  int score = 0;
+  int userScore = 0;
+  int computerScore = 0;
 
   //Generate a random number between 1 and 3 for the computer's choice and store it in the computerChoice variable.
   random_device engine;
@@ -50,6 +64,10 @@ int main() {
 
   //Determine the winner and display the result
   cout << determineWinner(userChoice, computerChoice) << endl;
+
+  //Keep track of the user's score and the computer's score
+    userScore = scoreKeeper(userChoice, computerChoice);
+    computerScore = scoreKeeper(userChoice, computerChoice);
   }
   
   if (userChoice == 4) {
@@ -98,4 +116,20 @@ int createMenu() {
     else {
       return "The computer wins.";
     }
+  }
+
+  int scoreKeeper(int userChoice, int computerChoice) {
+    int userScore = 0;
+    int computerScore = 0;
+    if (determineWinner(userChoice, computerChoice) == "You win!")
+      userScore++;
+    else if (determineWinner(userChoice, computerChoice) == "It's a tie.") {
+      userScore = userScore;
+      computerScore = computerScore;
+    }
+    else {
+      computerScore++;
+    }
+    return userScore;
+    return computerScore;
   }
