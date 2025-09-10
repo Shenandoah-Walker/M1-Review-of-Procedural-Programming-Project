@@ -122,7 +122,7 @@ int createMenu() {
     }
   }
 
-  void userScoreKeeper(int userChoice, int computerChoice, int userScore) {
+  void userScoreKeeper(int userChoice, int computerChoice, int &userScore) {
     
     if (determineWinner(userChoice, computerChoice) == "You win!") {
       userScore++;
