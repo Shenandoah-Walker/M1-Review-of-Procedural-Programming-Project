@@ -35,12 +35,16 @@ int main() {
   //Generate a random number between 1 and 3 for the computer's choice and store it in the computerChoice variable.
   random_device engine;
   uniform_int_distribution<int> computerChoiceDist(1, 3);
-  computerChoice = computerChoiceDist(engine);
+  
 
   //Write header
   cout << "Welcome to Rock, Paper, Scissors!" << endl;
 
   while (userChoice != 4) {
+
+  //Generate a random number between 1 and 3 for the computer's choice and store it in the computerChoice variable.
+  computerChoice = computerChoiceDist(engine);
+    
   //Write menu and get user's choice
   userChoice = createMenu();
 
