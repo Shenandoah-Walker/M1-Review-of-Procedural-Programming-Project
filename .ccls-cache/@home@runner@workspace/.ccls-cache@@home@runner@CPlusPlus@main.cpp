@@ -27,18 +27,19 @@ Postconditions: The winner of the game is returned as a string.
 string determineWinner(int userChoice, int computerChoice);
 
 /*
-  Function: userScoreKeeper
-  Purpose: Keeps track of the user's score.
+  Function: userScoreUpdate
+  Purpose: Updates the user's score and the computer's score.
   Parameters:
   - userChoice: The user's choice as an integer.
   - computerChoice: The computer's choice as an integer.
   - userScore: The user's score as an integer.
-  Returns: The user's score as an integer.
+  - computerScore: The computer's score as an integer.
+  Returns: None.
   Preconditions: The user's choice and the computer's choice are valid integers.
-  Postconditions: The user's score is returned as an integer.
+  Postconditions: The user's score is updated or the computer's score is updated, depending on the result of the game.
 */
 
-void userScoreKeeper(int userChoice, int computerChoice, int& userScore);
+void scoreUpdate(int userChoice, int computerChoice, int& userScore, int& computerScore);
 
 int main() {
   //Create and initialize variables
@@ -67,8 +68,8 @@ int main() {
   cout << "The computer chose: " << computerChoice << endl;
   cout << determineWinner(userChoice, computerChoice) << endl;
 
-  //Keep track of the user's score and the computer's score
-    userScoreKeeper(userChoice, computerChoice, userScore);
+  //Update the user's score and the computer's score
+    scoreUpdate(userChoice, computerChoice, userScore, computerScore);
 
     cout << "user: " << userScore << endl;
     cout << "computer: " << computerScore << endl;
@@ -122,10 +123,14 @@ int createMenu() {
     }
   }
 
-  void userScoreKeeper(int userChoice, int computerChoice, int &userScore) {
+  void scoreUpdate(int userChoice, int computerChoice, int& userScore, int& computerScore) {
     
     if (determineWinner(userChoice, computerChoice) == "You win!") {
       userScore++;
+    }
+
+    else if (determineWinner(userChoice, computerChoice) == "The computer wins.") {
+      computerScore++;
     }
       
   
