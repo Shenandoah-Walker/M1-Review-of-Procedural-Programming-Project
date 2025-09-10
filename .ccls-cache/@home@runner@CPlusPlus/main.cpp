@@ -75,7 +75,7 @@ int main() {
   //Generate a random number between 1 and 3 for the computer's choice and store it in the computerChoice variable.
   computerChoice = computerChoiceDist(engine);
     
-  //Write menu and get user's choice
+  //Write menu and get user's choice (The user's choice is validated in the createMenu function.)
   userChoice = createMenu();
 
   //If the player chooses to continue, determine the winner and display the computer choice and result of the round.
@@ -86,9 +86,6 @@ int main() {
 
     //Update the user's score and the computer's score
     scoreUpdate(userChoice, computerChoice, userScore, computerScore);
-
-    cout << "user: " << userScore << endl;
-    cout << "computer: " << computerScore << endl;
     
   }
   //If the player chooses to quit, display the winner of the tournament, thank the player for playing, and end the program.
@@ -153,7 +150,7 @@ int createMenu() {
     if (determineRoundWinner(userChoice, computerChoice) == "The computer wins.") {
       computerScore++;
     }
-      
+  }
 
     string determineTournamentWinner(int& userScore, int& computerScore) {
       if (userScore > computerScore) {
@@ -169,4 +166,4 @@ int createMenu() {
       }
       
     }
-  }
+  
