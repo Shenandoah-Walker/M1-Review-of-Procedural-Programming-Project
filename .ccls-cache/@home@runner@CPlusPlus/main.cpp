@@ -124,43 +124,52 @@ int createMenu() {
 
   string determineRoundWinner(int userChoice, int computerChoice) {
 
+    //For each possible combination of userChoice and computerChoice that results in a win for the user, return "You win!"
     if ((userChoice == 1 && computerChoice == 3) || (userChoice == 2 && computerChoice == 1) || (userChoice == 3 && computerChoice == 2)) {
       return "You win!";
     }
-
+      
+    //If userChoice and computerChoice are the same, return "This round resulted in a draw."
     else if (userChoice == computerChoice) {
       return "This round resulted in a draw.";
     }
-
+      
+    //If the user chooses to quit, return an empty string.
     else if (userChoice == 4) {
       return " ";
     }
-
+      
+    //If none of the above conditions are met (which means that the combinations resulted in a win for the computer), return "The computer wins."
     else {
       return "The computer wins.";
     }
   }
 
   void scoreUpdate(int userChoice, int computerChoice, int& userScore, int& computerScore) {
-    
+
+    //If the user wins the round, increment the user's score by 1. 
     if (determineRoundWinner(userChoice, computerChoice) == "You win!") {
       userScore++;
     }
-
+    //If the computer wins the round, increment the computer's score by 1.
     if (determineRoundWinner(userChoice, computerChoice) == "The computer wins.") {
       computerScore++;
     }
   }
 
     string determineTournamentWinner(int& userScore, int& computerScore) {
+
+      //If the user's score is greater than the computer's score, return "You won the tournament!"
       if (userScore > computerScore) {
         return "You won the tournament!";
       }
 
+      //If the computer's score is greater than the user's score, return "The computer won the tournament."
       else if (userScore < computerScore) {
         return "The computer won the tournament.";
       }
 
+      //If the user's score and the computer's score are the same, return "The tournament resulted in a draw."
       else {
         return "The tournament resulted in a draw.";
       }
