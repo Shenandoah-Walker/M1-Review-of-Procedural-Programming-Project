@@ -27,17 +27,18 @@ Postconditions: The winner of the game is returned as a string.
 string determineWinner(int userChoice, int computerChoice);
 
 /*
-  Function: scoreKeeper
-  Purpose: Keeps track of the user's score and the computer's score.
+  Function: userScoreKeeper
+  Purpose: Keeps track of the user's score.
   Parameters:
   - userChoice: The user's choice as an integer.
   - computerChoice: The computer's choice as an integer.
-  Returns: The user's score as an integer and the computer's score as an integer.
+  - userScore: The user's score as an integer.
+  Returns: The user's score as an integer.
   Preconditions: The user's choice and the computer's choice are valid integers.
-  Postconditions: The user's score and the computer's score are returned as integers.
+  Postconditions: The user's score is returned as an integer.
 */
 
-int scoreKeeper(int userChoice, int computerChoice);
+void userScoreKeeper(int userChoice, int computerChoice, int& userScore);
 
 int main() {
   //Create and initialize variables
@@ -62,12 +63,15 @@ int main() {
   //Write menu and get user's choice
   userChoice = createMenu();
 
-  //Determine the winner and display the result
+  //Determine the winner and display the computer choice and result of the round.
+  cout << "The computer chose: " << computerChoice << endl;
   cout << determineWinner(userChoice, computerChoice) << endl;
 
   //Keep track of the user's score and the computer's score
-    userScore = scoreKeeper(userChoice, computerChoice);
-    computerScore = scoreKeeper(userChoice, computerChoice);
+    userScoreKeeper(userChoice, computerChoice, userScore);
+
+    cout << "user: " << userScore << endl;
+    cout << "computer: " << computerScore << endl;
   }
   
   if (userChoice == 4) {
@@ -118,18 +122,11 @@ int createMenu() {
     }
   }
 
-  int scoreKeeper(int userChoice, int computerChoice) {
-    int userScore = 0;
-    int computerScore = 0;
-    if (determineWinner(userChoice, computerChoice) == "You win!")
+  void userScoreKeeper(int userChoice, int computerChoice, int userScore) {
+    
+    if (determineWinner(userChoice, computerChoice) == "You win!") {
       userScore++;
-    else if (determineWinner(userChoice, computerChoice) == "It's a tie.") {
-      userScore = userScore;
-      computerScore = computerScore;
     }
-    else {
-      computerScore++;
-    }
-    return userScore;
-    return computerScore;
+      
+  
   }
