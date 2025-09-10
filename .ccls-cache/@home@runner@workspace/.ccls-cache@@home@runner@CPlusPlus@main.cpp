@@ -24,7 +24,7 @@ Preconditions: The user's choice and the computer's choice are valid integers.
 Postconditions: The winner of the game is returned as a string.
  */
 
-string determineWinner(int userChoice, int computerChoice);
+string determineRoundWinner(int userChoice, int computerChoice);
 
 /*
   Function: userScoreUpdate
@@ -40,6 +40,20 @@ string determineWinner(int userChoice, int computerChoice);
 */
 
 void scoreUpdate(int userChoice, int computerChoice, int& userScore, int& computerScore);
+
+
+/*
+  Function: determineTournamentWinner
+  Purpose: Determines the winner of the tournament based on the user's score and the computer's score.
+  Parameters:
+  - userScore: The user's score as an integer.
+  - computerScore: The computer's score as an integer.
+  Returns: The winner of the tournament as a string.
+  Preconditions: The user's score and the computer's score are valid integers.
+  Postconditions: The winner of the tournament is returned as a string.
+*/
+
+string determineTournamentWinner(int& userScore, int& computerScore);
 
 int main() {
   //Create and initialize variables
@@ -64,21 +78,28 @@ int main() {
   //Write menu and get user's choice
   userChoice = createMenu();
 
-  //Determine the winner and display the computer choice and result of the round.
-  cout << "The computer chose: " << computerChoice << endl;
-  cout << determineWinner(userChoice, computerChoice) << endl;
+  //If the player chooses to continue, determine the winner and display the computer choice and result of the round.
+  if (userChoice != 4) {
 
-  //Update the user's score and the computer's score
+    cout << "The computer chose: " << computerChoice << endl;
+    cout << determineRoundWinner(userChoice, computerChoice) << endl;
+
+    //Update the user's score and the computer's score
     scoreUpdate(userChoice, computerChoice, userScore, computerScore);
 
     cout << "user: " << userScore << endl;
     cout << "computer: " << computerScore << endl;
+    
   }
-  
-  if (userChoice == 4) {
+  //If the player chooses to quit, display the winner of the tournament, thank the player for playing, and end the program.
+  else {
+    cout << determineTournamentWinner(userScore, computerScore) << endl;
     cout << "Thank you for playing!" << endl;
     return 0;
+       }
+  
   }
+  
   
 }
 
@@ -104,14 +125,14 @@ int createMenu() {
   return choice;
 }
 
-  string determineWinner(int userChoice, int computerChoice) {
+  string determineRoundWinner(int userChoice, int computerChoice) {
 
     if ((userChoice == 1 && computerChoice == 3) || (userChoice == 2 && computerChoice == 1) || (userChoice == 3 && computerChoice == 2)) {
       return "You win!";
     }
 
     else if (userChoice == computerChoice) {
-      return "It's a tie.";
+      return "This round resulted in a draw.";
     }
 
     else if (userChoice == 4) {
@@ -125,13 +146,27 @@ int createMenu() {
 
   void scoreUpdate(int userChoice, int computerChoice, int& userScore, int& computerScore) {
     
-    if (determineWinner(userChoice, computerChoice) == "You win!") {
+    if (determineRoundWinner(userChoice, computerChoice) == "You win!") {
       userScore++;
     }
 
-    else if (determineWinner(userChoice, computerChoice) == "The computer wins.") {
+    if (determineRoundWinner(userChoice, computerChoice) == "The computer wins.") {
       computerScore++;
     }
       
-  
+
+    string determineTournamentWinner(int& userScore, int& computerScore) {
+      if (userScore > computerScore) {
+        return "You won the tournament!";
+      }
+
+      else if (userScore < computerScore) {
+        return "The computer won the tournament.";
+      }
+
+      else {
+        return "The tournament resulted in a draw.";
+      }
+      
+    }
   }
