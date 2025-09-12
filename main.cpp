@@ -117,8 +117,11 @@ int createMenu() {
   cin >> choice;
 
   //Validate the user's choice.
-  if (choice < 1 || choice > 4) {
+  while (choice < 1 || choice > 4) {
+    cout << endl;
     cout << "Invalid choice. Please try again." << endl;
+    cout << endl;
+    cout << "Enter your choice: ";
     cin >> choice;
   }
 
