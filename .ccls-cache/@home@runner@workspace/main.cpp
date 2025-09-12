@@ -82,6 +82,7 @@ int main() {
   if (userChoice != 4) {
 
     cout << "The computer chose: " << computerChoice << endl;
+    cout << endl;
     cout << determineRoundWinner(userChoice, computerChoice) << endl;
 
     //Update the user's score and the computer's score
@@ -111,6 +112,8 @@ int createMenu() {
   cout << "3. Scissors" << endl;
   cout << "4. Quit" << endl;
 
+  cout << endl;
+  cout << "Enter your choice: ";
   cin >> choice;
 
   //Validate the user's choice.
