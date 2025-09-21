@@ -68,4 +68,22 @@ Postconditions: The report will be printed to the console.
 void createReport(string studentName[], double averages[], int numStudentsRecords);
 
 int main() {
-}
+  }
+
+  int getTestData(ifstream &inputFile, string studentName[], int testScores[][maxTestScores], int numStudentsRecords) {
+    int count = 0;
+    while (inputFile >> studentName[count] {
+        for (int col = 0; col < maxTestScores; col++) {
+            inputFile >> testScores[count][col];
+        }
+        count++;
+    }
+    
+    inputFile.close();
+
+    numStudentsRecords = count;
+
+    return numStudentsRecords;
+  }
+
+ 
