@@ -86,4 +86,13 @@ int main() {
     return numStudentsRecords;
   }
 
+  void calcAverage(int testScores[][maxTestScores], int numStudentsRecords, double averages[]) {
+    for (int count = 0; count < numStudentsRecords; count++) {
+        double sum = 0;
+        for (int col = 0; col < maxTestScores; col++) {
+            sum += testScores[count][col];
+        }
+        averages[row] = sum / maxTestScores;
+    }
+  }
  
