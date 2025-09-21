@@ -65,7 +65,7 @@ Preconditions: The studentName and averages arrays must already hold the names a
 Postconditions: The report will be printed to the console.
 */
 
-void createReport(string studentName[], double averages[], int numStudentsRecords);
+void createReport(const string studentName[], const double averages[], int numStudentsRecords);
 
 int main() {
   }
@@ -113,5 +113,14 @@ int main() {
         return 'F';
     }
   }
+
+void createReport(const string studentName[], const double averages[], int numStudentsRecords) {
+    cout << "Student Name" << " " << "Average" << " " << "Letter Grade" << endl;
+    for (int count = 0; count < numStudentsRecords; count++)
+        cout << studentName[count] << " " << averages[count] << " " << calcLetterGrade(averages[count]) << endl;
+  
+    }
+  
+}
 
  
