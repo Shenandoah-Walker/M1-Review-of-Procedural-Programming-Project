@@ -74,6 +74,8 @@ int main() {
     int testScores[maxTestScores][maxTestScores];
     double averages[maxTestScores];
 
+   string fileName;
+
     //Initialize the number of student records to 0
    int numStudentsRecords = 0;
 
@@ -87,12 +89,17 @@ int main() {
       cin >> fileName;      
   }
 
+  numStudentsRecords = getTestData(inputFile, studentName, testScores, numStudentsRecords);
+  calcAverage(testScores, numStudentsRecords, averages);
+  createReport(studentName, averages, numStudentsRecords);
+  inputFile.close();
+  return 0;
   
   }
 
   int getTestData(ifstream &inputFile, string studentName[], int testScores[][maxTestScores], int numStudentsRecords) {
     int count = 0;
-    while (inputFile >> studentName[count] {
+    while (inputFile >> studentName[count]) {
         for (int col = 0; col < maxTestScores; col++) {
             inputFile >> testScores[count][col];
         }
@@ -112,7 +119,7 @@ int main() {
         for (int col = 0; col < maxTestScores; col++) {
             sum += testScores[count][col];
         }
-        averages[row] = sum / maxTestScores;
+        averages[count] = sum / maxTestScores;
     }
   }
 
@@ -141,6 +148,6 @@ void createReport(const string studentName[], const double averages[], int numSt
   
     }
   
-}
+
 
  
