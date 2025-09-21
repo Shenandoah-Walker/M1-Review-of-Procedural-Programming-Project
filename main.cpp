@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//Create a global variable for the number of test scores. The 
 const int maxTestScores = 10;
 
 /*
@@ -68,6 +69,25 @@ Postconditions: The report will be printed to the console.
 void createReport(const string studentName[], const double averages[], int numStudentsRecords);
 
 int main() {
+    //Create the arrays to hold the student names, test scores, and averages
+    string studentName[maxTestScores];
+    int testScores[maxTestScores][maxTestScores];
+    double averages[maxTestScores];
+
+    //Initialize the number of student records to 0
+   int numStudentsRecords = 0;
+
+    //Open the input file and validate it. If it fails to open, print an error message and prompt the user to enter the file name again.
+    cout << "Please enter the name of the file that contains the list of students and their test scores: " << endl;
+    cin >> fileName;
+    ifstream inputFile;
+    inputFile.open(fileName);
+    while (inputFile.fail()) {
+      cout << "Error opening file. Please enter a valid file name." << endl;
+      cin >> fileName;      
+  }
+
+  
   }
 
   int getTestData(ifstream &inputFile, string studentName[], int testScores[][maxTestScores], int numStudentsRecords) {
