@@ -9,7 +9,7 @@ using namespace std;
 
 //Create global constants for the maximum number of students and test scores
 const int maxStudents = 50;
-const int maxTestScores = 10;
+const int maxTestScores = 5;
 
 
 /*
@@ -25,7 +25,7 @@ Parameters:
  Postconditions: The students' names will be stored in the studentName array and the test scores will be stored in the testScores array. 
 */
 
-int getTestData(ifstream &inputFile, string studentName[], int testScores[maxStudents][maxTestScores], int &numTestScores);
+int getTestData(ifstream &inputFile, string studentName[], int testScores[][maxTestScores]);
 
 /*
 Function: calcAverage
@@ -72,6 +72,7 @@ Postconditions: The report will be printed to the console.
 
 void createReport(const string studentName[], const double averages[], int numStudentRecords);
 
+
 int main() {
     /*Create the arrays to hold the student names, test scores, and averages. The array sizes are initialized to the maximum number of students and test scores, respectively*/
     string studentName[maxStudents];
@@ -82,7 +83,6 @@ int main() {
 
     //Initialize the number of student records and test scores to 0
    int numStudentRecords = 0;
-   int numTestScores = 0;
 
     //Open the input file and validate it. If it fails to open, print an error message and prompt the user to enter the file name again.
     cout << "Please enter the name of the file that contains the list of students and their test scores: ";
@@ -96,8 +96,8 @@ int main() {
       return 1;  
   }
 
-  numStudentRecords = getTestData(inputFile, studentName, testScores, numTestScores);
-  calcAverage(testScores, numStudentRecords, numTestScores, averages);
+  numStudentRecords = getTestData(inputFile, studentName, testScores);
+  calcAverage(testScores, numStudentRecords, maxTestScores, averages);
   createReport(studentName, averages, numStudentRecords);
   inputFile.close();
   
@@ -105,20 +105,15 @@ int main() {
   
   }
 
-  int getTestData(ifstream &inputFile, string studentName[], int testScores[maxStudents][maxTestScores], int &numTestScores) {
+  int getTestData(ifstream &inputFile, string studentName[], int testScores[][maxTestScores]) {
     int count = 0;
 
-    while (inputFile >> studentName[count]) {
-        int col = 0;
-        while (col < maxTestScores && inputFile >> testScores[count][col]) {
-            col++;
-        }
-          //Determine the number of test scores. Because the number of test scores is the same for all students, it will only be determined once (for the first student).
-          if (count == 0) {
-            numTestScores = col;
-
+    while ((count < maxStudents) && (inputFile >> studentName[count])) {
+        for (int i = 0; i < maxTestScores; i++) {
+            inputFile >> testScores[count][i];
         }
         count++;
+    
     }
     //The number of student records is the same as the number of times the loop iterated, so return count.
     return count;
@@ -160,6 +155,5 @@ void createReport(const string studentName[], const double averages[], int numSt
   
     }
   
-
 
  
