@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -89,9 +91,9 @@ int main() {
     ifstream inputFile;
     inputFile.open(fileName);
   
-    while (inputFile.fail()) {
-      cout << "Error opening file. Please enter a valid file name." << endl;
-      cin >> fileName;      
+    if (inputFile.fail()) {
+      cout << "Error opening file. Please restart the program and enter a valid file name." << endl;
+      return 1;  
   }
 
   numStudentRecords = getTestData(inputFile, studentName, testScores, numTestScores);
@@ -105,7 +107,7 @@ int main() {
 
   int getTestData(ifstream &inputFile, string studentName[], int testScores[maxStudents][maxTestScores], int &numTestScores) {
     int count = 0;
-    
+
     while (inputFile >> studentName[count]) {
         int col = 0;
         while (col < maxTestScores && inputFile >> testScores[count][col]) {
@@ -114,12 +116,10 @@ int main() {
           //Determine the number of test scores. Because the number of test scores is the same for all students, it will only be determined once (for the first student).
           if (count == 0) {
             numTestScores = col;
-          
+
         }
         count++;
     }
-    
-
     //The number of student records is the same as the number of times the loop iterated, so return count.
     return count;
   }
@@ -153,9 +153,10 @@ int main() {
   }
 
 void createReport(const string studentName[], const double averages[], int numStudentRecords) {
-    cout << "Student Name" << " " << "Average" << " " << "Letter Grade" << endl;
+    cout << "Student Name" << setw(23) << "Average Test Score" << setw(20) << "Letter Grade" << endl;
+    cout << "------------------------------------------------------------" << endl;
     for (int count = 0; count < numStudentRecords; count++)
-        cout << studentName[count] << " " << averages[count] << " " << calcLetterGrade(averages[count]) << endl;
+        cout << " " << studentName[count] << setw(20) << averages[count] << setw(20) << calcLetterGrade(averages[count]) << endl;
   
     }
   
