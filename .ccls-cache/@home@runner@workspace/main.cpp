@@ -73,7 +73,7 @@ Postconditions: The report will be printed to the console.
 void createReport(const string studentName[], const double averages[], int numStudentRecords);
 
 int main() {
-    //Create the arrays to hold the student names, test scores, and averages
+    /*Create the arrays to hold the student names, test scores, and averages. The array sizes are initialized to the maximum number of students and test scores, respectively*/
     string studentName[maxStudents];
     int testScores[maxStudents][maxTestScores];
     double averages[maxStudents];
