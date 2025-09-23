@@ -39,7 +39,7 @@ Preconditions: The testScores array must already hold the test scores of the stu
 Postconditions: The averages array will hold the average test score for each student.
 */
 
- void calcAverage(int testScores[maxStudents][maxTestScores], int numStudentRecords, int numTestScores, double averages[]);
+ void calcAverage(int testScores[][maxTestScores], int numStudentRecords, int numTestScores, double averages[]);
 
 /*
 Function: calcLetterGrade
@@ -118,7 +118,7 @@ int main() {
     return count;
   }
 
-  void calcAverage(int testScores[maxStudents][maxTestScores], int numStudentRecords, int numTestScores, double averages[]) {
+  void calcAverage(int testScores[][maxTestScores], int numStudentRecords, int numTestScores, double averages[]) {
     for (int count = 0; count < numStudentRecords; count++) {
         double sum = 0;
         for (int col = 0; col < numTestScores; col++) {
@@ -145,6 +145,7 @@ int main() {
         return 'F';
     }
   }
+
 
 void createReport(const string studentName[], const double averages[], int numStudentRecords) {
     cout << fixed << setprecision(1);
