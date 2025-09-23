@@ -148,6 +148,7 @@ int main() {
   }
 
 void createReport(const string studentName[], const double averages[], int numStudentRecords) {
+    cout << fixed << setprecision(1);
     cout << endl;
     cout << "Student Name" << setw(25) << "Average Test Score" << setw(23) << "Letter Grade" << endl;
     cout << "------------------------------------------------------------" << endl;
