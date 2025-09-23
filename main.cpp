@@ -19,7 +19,6 @@ Parameters:
  - inputFile: the file that the user inputs that will be used to read the data from the file
  - studentName: an array of strings that will hold the names of the students
  - testScores: a 2D array of integers that will hold the test scores of the students
- - numTestScores: an integer that will hold the number of test scores for each student
  Returns: The number of student records read from the file
  Preconditions: The file must already be open and validated.
  Postconditions: The students' names will be stored in the studentName array and the test scores will be stored in the testScores array. 
