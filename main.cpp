@@ -132,13 +132,13 @@ int main() {
     if (average >= 90) {
         return 'A';
     }
-    else if (average >= 80 && average < 90) {
+    else if (average >= 80) {
         return 'B';
     }
-    else if (average >= 70 && average < 80) {
+    else if (average >= 70) {
         return 'C';
     }
-    else if (average >= 60 && average < 70) {
+    else if (average >= 60) {
         return 'D';
     }
     else {
